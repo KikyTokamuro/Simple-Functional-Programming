@@ -5,13 +5,13 @@ def inc(x):
 	return x + 1
 
 print("inc(10) ->")
-print(inc(10)) # -> 10
+print(inc(10)) # -> 11
 
 print("\ninc(10) ->")
-print(inc(10)) # -> 10
+print(inc(10)) # -> 11
 
 print("\ninc(10) ->")
-print(inc(10)) # -> 10
+print(inc(10)) # -> 11
 
 
 # Грязная функция, которая при одном и том же аргументе, возращает разные результаты:
