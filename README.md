@@ -54,34 +54,34 @@ hashIncDec = {
 Примеры на языке Scheme (GNU Guile):
 ```scheme
 ;; Определение функции которая прибавляет единицу к каждому элементу списка:
-(define (incList l)
+(define (inc-list l)
   (map 1+ l))
 
 ;; Функция, которая принимает функцию в качестве аргумента, и возвращает другую функцию как результат:
-(define (changeList f l)
+(define (change-list f l)
   (f l))
 
-scheme@(guile-user) [1]> (changeList incList '(1 2 3))
+scheme@(guile-user) [1]> (change-list inc-list '(1 2 3))
 $1 = (2 3 4)
 
 
 ;; Хранение функции в переменной
-(define c changeList)
+(define c change-list)
 
-scheme@(guile-user) [3]> (c incList '(1 2 3))
+scheme@(guile-user) [3]> (c inc-list '(1 2 3))
 $2 = (2 3 4)
 
 
 ;; Хранение функций в структурах данных предоставляемых языком:
 ;; В данном случае, хранение анонимных функций в хеш-таблице.
-(define hashIncDec (make-hash-table))
+(define hash-inc-dec (make-hash-table))
 
-(hash-set! hashIncDec 'inc (lambda (x) (+ x 1) ))
-(hash-set! hashIncDec 'dec (lambda (x) (- x 1) ))
+(hash-set! hash-inc-dec 'inc (lambda (x) (+ x 1) ))
+(hash-set! hash-inc-dec 'dec (lambda (x) (- x 1) ))
 
-scheme@(guile-user)> ((hash-ref hashIncDec 'inc) 5)
+scheme@(guile-user)> ((hash-ref hash-inc-dec 'inc) 5)
 $3 = 6
-scheme@(guile-user)> ((hash-ref hashIncDec 'dec) 5)
+scheme@(guile-user)> ((hash-ref hash-inc-dec 'dec) 5)
 $4 = 4
 ```
 
@@ -114,7 +114,7 @@ def inc(x):
 from random import randint
 
 def randInc(x):
-	return randint(0, 100) + 1
+	return randint(0, 100) + x
 
 >>> randInc(1)
 94
@@ -122,6 +122,32 @@ def randInc(x):
 6
 >>> randInc(1)
 33
+```
+
+Примеры на языке Scheme (GNU Guile):
+```scheme
+;; Чистая функция, которая ничего не изменяет, и при одном и том же аргументе, всегда возвращает один и тот же результат:
+(define (inc x) 
+	(+ x 1))
+
+scheme@(guile-user)> (inc 10)
+$1 = 11
+scheme@(guile-user)> (inc 10)
+$2 = 11
+scheme@(guile-user)> (inc 10)
+$3 = 11
+
+
+;; Грязная функция, которая при одном и том же аргументе, возвращает разные результаты:
+(define (rand-inc x)
+	(+ (random 100) x))
+
+scheme@(guile-user)> (rand-inc 1)
+$1 = 62
+scheme@(guile-user)> (rand-inc 1)
+$2 = 52
+scheme@(guile-user)> (rand-inc 1)
+$3 = 37
 ```
 
 ## Ссылочная прозрачность
@@ -145,6 +171,16 @@ def square(x):
 	
 >>> square(4) + 2 == 16 + 2
 True
+```
+
+Пример на языке Scheme (GNU Guile):
+```scheme
+;; Ссылочная прозрачность
+(define (square x)
+	(* x x))
+	
+scheme@(guile-user)> (= (+ (square 4) 2) (+ 16 2))
+$1 = #t
 ```
 
 ## Замыкание
