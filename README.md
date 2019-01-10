@@ -52,7 +52,7 @@ hashIncDec = {
 ```
 
 Примеры на языке Scheme (GNU Guile):
-```lisp
+```scheme
 ;; Определение функции которая прибавляет единицу к каждому элементу списка:
 (define (incList l)
   (map 1+ l))
