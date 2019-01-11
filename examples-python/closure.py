@@ -13,4 +13,4 @@ print("s = sum(10)")
 print("result = s(5)")
 print("print(result) ->")
 
-print(result) # -> 
+print(result) # -> 15
