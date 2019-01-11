@@ -9,3 +9,4 @@
 (define sum-x-y (sum 10))
 
 (write (sum-x-y 5)) ;; -> 15
+(newline)
