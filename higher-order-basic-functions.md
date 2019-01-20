@@ -17,3 +17,10 @@
 >>> list(map(lambda x: len(x), ["Hello", "World", "Python"]))
 [5, 5, 6]
 ```
+
+### Функция map в языке Scheme (GNU Guile)
+```scheme
+scheme@(guile-user)> (map (lambda (x) (+ x 999)) '(1000 999 998 997 996))
+$1 = (1999 1998 1997 1996 1995)
+
+```
