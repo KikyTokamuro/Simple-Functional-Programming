@@ -16,6 +16,11 @@
 # Подсчет кол-ва букв в словах находящихся в списке:
 >>> list(map(lambda x: len(x), ["Hello", "World", "Python"]))
 [5, 5, 6]
+
+# Использование словаря в функции Map:
+>>> chars = {'a': 1, 'b': 2, 'c': 3}
+>>> list(map(lambda x: x*chars[x], chars))
+['a', 'bb', 'ccc']
 ```
 
 ### Функция map в языке Scheme (GNU Guile)
