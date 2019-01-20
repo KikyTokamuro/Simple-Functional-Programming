@@ -61,14 +61,14 @@ hashIncDec = {
 (define (change-list f l)
   (f l))
 
-scheme@(guile-user) [1]> (change-list inc-list '(1 2 3))
+scheme@(guile-user)> (change-list inc-list '(1 2 3))
 $1 = (2 3 4)
 
 
 ;; Хранение функции в переменной
 (define c change-list)
 
-scheme@(guile-user) [3]> (c inc-list '(1 2 3))
+scheme@(guile-user)> (c inc-list '(1 2 3))
 $2 = (2 3 4)
 
 
@@ -279,6 +279,31 @@ funcYZ = partial(f, 2) # x = 2
 
 >>> partial(f, 2)(3, 4)
 900
+```
+Пример на языке Scheme (GNU Guile):
+```scheme
+(define (partial fun . args)
+  (lambda x (apply fun (append args x))))
+
+
+;; Обычная функция принимающая 3 аргумента:
+(define (f x y z)
+  (* (+ x y z) 100))
+
+
+;; Частичное применение этой же функции:
+(define (funcYZ y z)
+  ((partial f 2) y z)) ;; x = 2
+
+
+scheme@(guile-user)> (f 2 3 4)
+$1 = 900
+
+scheme@(guile-user)> (funcYZ 3 4)
+$2 = 900
+
+scheme@(guile-user)> ((partial f 2) 3 4)
+$3 = 900
 ```
 
 ## Хвостовая рекурсия и ее оптимизация
