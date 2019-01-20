@@ -374,6 +374,35 @@ scheme@(guile-user)> (factorial 5)
 $3 = 120
 scheme@(guile-user)> (factorial 10)
 $4 = 3628800
+
+
+;; Трассировка выполнения вышепредставленных функций:
+;; Можно видеть, что функция без хвостовой рекурсии занимает 10 вызовов в стеке.
+scheme@(guile-user)> ,trace (factorial 10)
+trace: (factorial 10)
+trace: |  (factorial 9)
+trace: |  |  (factorial 8)
+trace: |  |  |  (factorial 7)
+trace: |  |  |  |  (factorial 6)
+trace: |  |  |  |  |  (factorial 5)
+trace: |  |  |  |  |  |  (factorial 4)
+trace: |  |  |  |  |  |  |  (factorial 3)
+trace: |  |  |  |  |  |  |  |  (factorial 2)
+trace: |  |  |  |  |  |  |  |  |  (factorial 1)
+trace: |  |  |  |  |  |  |  |  |  1
+trace: |  |  |  |  |  |  |  |  2
+trace: |  |  |  |  |  |  |  6
+trace: |  |  |  |  |  |  24
+trace: |  |  |  |  |  120
+trace: |  |  |  |  720
+trace: |  |  |  5040
+trace: |  |  40320
+trace: |  362880
+trace: 3628800
+;; А функция с хвостовой рекурсией выполняется как один вызов.
+scheme@(guile-user)> ,trace (factorial-tail 10)
+trace: (factorial-tail 10)
+trace: 3628800
 ```
 Оптимизация хвостовых вызовов - это оптимизация, которая заменяет вызовы в хвостовых позициях переходами, что гарантирует выполнение циклов, реализованных с использованием рекурсии, в пространстве постоянного стека.
 
