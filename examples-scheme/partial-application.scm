@@ -1,3 +1,6 @@
+#!/usr/bin/guile -s
+!#
+
 (define (partial fun . args)
   (lambda x (apply fun (append args x))))
 
