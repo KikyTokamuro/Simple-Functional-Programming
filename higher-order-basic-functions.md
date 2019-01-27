@@ -50,7 +50,74 @@ $1 = (1999 1998 1997 1996 1995)
 scheme@(guile-user)> (filter even? '(1 2 3 4 5 6 7 8 9 10))
 $1 = (2 4 6 8 10)
 
-scheme@(guile-user) [1]> (filter (lambda (x) (< x 5)) '(1 2 3 4 5 6 7 8 9 10))
+scheme@(guile-user)> (filter (lambda (x) (< x 5)) '(1 2 3 4 5 6 7 8 9 10))
 $2 = (1 2 3 4)
 ```
 
+## Reduce / Fold
+Функция `reduce` принимает 2 аргумента: функцию и последовательность. `reduce` последовательно применяет функцию-аргумент к элементам последовательности, возвращает единичное значение. 
+
+Большинство функций и рекурсивных алгоритмов может быть реализовано, с помощью функции `reduce` либо ее аналога `fold`. [Ссылка по этой теме.](http://www.cs.nott.ac.uk/~pszgmh/fold.pdf)
+
+### Функция reduce в языке Python
+В Python 2.x функция reduce является встроенной, а в Python 3 она находится в модуле functools.
+```python
+# Сумма чисел от 0 до 100:
+>>> from functools import reduce
+>>> reduce(lambda x, y: x + y, range(0, 101))
+5050
+
+>>> reduce(lambda x, y: 10 * x + y, [1,2,3,4,5,6,7,8,9])
+123456789
+```
+
+### Функции fold и reduce в языке Scheme (GNU Guile)
+[Более подробно про эти функции.](https://www.gnu.org/software/guile/manual/html_node/SRFI_002d1-Fold-and-Map.html)
+```scheme
+;; Сумма чисел от 0 до 100:
+scheme@(guile-user)> (use-modules (srfi srfi-1))
+scheme@(guile-user)> (fold + 0 (iota 101)) 
+$1 = 5050
+scheme@(guile-user) [17]> (reduce + 0 '(5 6 7))
+$7 = 18
+scheme@(guile-user)> (reduce + 0 '(5 6 7))
+$2 = 18
+```
+
+## For Each 
+Функция `for-each` - это нечистая функция высшего порядка, которая выполняет какой либо побочный эффект, для каждого элемента переданного списка. Так же, в отличии от функции `map`, функция `for-each` ничего не возвращает.
+
+### Функция for-each в языке Scheme (GNU Guile)
+```scheme
+scheme@(guile-user)> (for-each (lambda (x y)
+	    (display (string x y))
+	    (newline))
+	  (string->list "hello") (string->list "world"))
+hw
+eo
+lr
+ll
+od
+```
+
+### Функция for_each в языке Python
+Как таковой функции `for-each` в языке Python нет, но ее не сложно определить.
+```python
+def for_each(f, * xss):
+	for xs in zip(* xss):
+		f(*xs)
+
+>>> for_each(print, range(0, 5))
+0
+1
+2
+3
+4
+
+>>> for_each(lambda x, y: print(x, y), range(0, 5), [*'abcde'])
+0 a
+1 b
+2 c
+3 d
+4 e
+```
