@@ -78,8 +78,6 @@ $2 = (1 2 3 4)
 scheme@(guile-user)> (use-modules (srfi srfi-1))
 scheme@(guile-user)> (fold + 0 (iota 101)) 
 $1 = 5050
-scheme@(guile-user) [17]> (reduce + 0 '(5 6 7))
-$7 = 18
 scheme@(guile-user)> (reduce + 0 '(5 6 7))
 $2 = 18
 ```
