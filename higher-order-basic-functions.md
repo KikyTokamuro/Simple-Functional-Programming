@@ -139,7 +139,7 @@ def apply2(f, * args):
 6
 ```
 
-### Функция apply в языке Scheme (Gnu Guile)
+### Функция apply в языке Scheme (GNU Guile)
 ```scheme
 scheme@(guile-user)> (apply (lambda (x y) (+ x (* y 2))) '(10 100)) 
 $1 = 210
