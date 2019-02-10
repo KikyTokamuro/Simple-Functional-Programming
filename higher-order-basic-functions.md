@@ -119,3 +119,37 @@ def for_each(f, * xss):
 3 d
 4 e
 ```
+
+## Apply
+Функция `apply` применяет полученную функцию к списку либо массиву элементов.
+
+### Функция apply в языке Python
+Функции `apply` в языке Python нет, но ее не сложно определить.
+```python
+def apply(f, xs): 
+	return f(*xs)
+	
+>>> apply(lambda x, y: x + y, [1, 2])
+3
+
+def apply2(f, * args):
+	return f(*(tuple(args[:-1]) + tuple(args[-1])))
+
+>>> apply2(lambda x, y, z: x + y + z, 1, [2, 3])
+6
+```
+
+### Функция apply в языке Scheme (Gnu Guile)
+```scheme
+scheme@(guile-user)> (apply (lambda (x y) (+ x (* y 2))) '(10 100)) 
+$1 = 210
+
+;; Определении функции range, которая генерирует список от from и до to:
+scheme@(guile-user)> (define (range from to) (map (lambda (x) (+ from x)) (iota (- to from))))
+scheme@(guile-user)> (range 0 10)
+$2 = (0 1 2 3 4 5 6 7 8 9)
+
+;; Сумма чисел от 0 до 10
+scheme@(guile-user)> (apply + (range 0 11))
+$3 = 55
+```
