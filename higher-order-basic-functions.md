@@ -2,7 +2,7 @@
 
 - [Map](#map)
 - [Filter](#filter)
-- [Reduce / Fold](#reduce-fold)
+- [Reduce / Fold](#reduce--fold)
 - [For Each](#for-each)
 - [Apply](#apply)
 
