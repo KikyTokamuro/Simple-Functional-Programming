@@ -435,3 +435,4 @@ trace: 3628800
 
 - [Обзор основных функций высшего порядка](./higher-order-basic-functions.md)
 - [Ленивые вычисления](./lazy-evaluation.md)
+- [Предикаты](./predicate.md)
