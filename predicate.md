@@ -32,4 +32,5 @@ $2 = (1 3 5 7 9)
 
 
 [Предикаты в языке Scheme](https://people.eecs.berkeley.edu/~bh/ssch6/true.html)
+
 [Предикаты в языке Racket](https://docs.racket-lang.org/predicates/index.html)
