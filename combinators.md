@@ -17,7 +17,7 @@
 - Монады-комбинаторы: Haskell’s Maybe monad, Either Monad, IO Monad, ...
 - Parsec - это библиотека для парсинга комбинаторов
 
-# Реализация основных комбинаторов на языке Scheme (Chicken):
+### Реализация основных комбинаторов на языке Scheme (Chicken):
 [Репозиторий с моим исходником](https://github.com/KikyTokamuro/chicken-combinators)
 ```scheme
 ;; Identity
